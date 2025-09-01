@@ -90,12 +90,12 @@ Open two terminals:
 Terminal A — Backend
 cd mini-crm\backend
 npm run dev
-# -> API running on http://localhost:4000
+ -> API running on http://localhost:4000
 
 Terminal B — Frontend
 cd mini-crm\frontend
 npm run dev
-# -> Web running on http://localhost:3000
+ -> Web running on http://localhost:3000
 
 
  TRY THE API (Swagger or PowerShell)
@@ -112,19 +112,19 @@ Use protected endpoints like GET /contacts, POST /contacts, etc.
 PowerShell quick test
 $base = 'http://localhost:4000'
 
-# Create a demo user (ignore if already exists)
+Create a demo user (ignore if already exists)
 irm -Method Post "$base/auth/signup" -ContentType 'application/json' `
   -Body (@{ email='demo@mini-crm.test'; password='Demo#1234' } | ConvertTo-Json)
 
-# Login and capture JWT
+ Login and capture JWT
 $t = (irm -Method Post "$base/auth/login" -ContentType 'application/json' `
   -Body (@{ email='demo@mini-crm.test'; password='Demo#1234' } | ConvertTo-Json)).token
 $h = @{ Authorization = "Bearer $t" }
 
-# List contacts (empty or already created)
+ List contacts (empty or already created)
 irm -Headers $h "$base/contacts?page=1&pageSize=10"
 
-# Create one
+ Create one
 $contact = @{ name='Alice'; email='alice@acme.com'; company='Acme'; phone='555-1234' } | ConvertTo-Json
 irm -Method Post "$base/contacts" -Headers $h -ContentType 'application/json' -Body $contact
 
@@ -156,4 +156,5 @@ NOTES AND SCOPE
 
 The app intentionally favors clarity over complexity (e.g., simple error handling, SQLite dev DB).
 For production you’d typically add:
+
 Postgres, logging, validation with Zod/JOI, rate limiting, refresh tokens, domain services, tests, CI.
