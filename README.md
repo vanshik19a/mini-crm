@@ -56,11 +56,11 @@ CLONE AND INSTALL
 git clone https://github.com/<your-username>/mini-crm.git
 cd mini-crm
 
-# Backend deps
+ Backend deps
 cd backend
 npm install
 
-# Frontend deps
+ Frontend deps
 cd ..\frontend
 npm install
 
@@ -72,15 +72,15 @@ JWT_SECRET=dev-secret-change-me
 DATABASE_URL="file:./dev.db"
 
 frontend/.env.local
-# When running locally with the backend on port 4000:
+ When running locally with the backend on port 4000:
 NEXT_PUBLIC_API_URL=http://localhost:4000
 
 PRISMA (DB)
 From mini-crm/backend:
-# Generate Prisma client (after install or schema changes)
+ Generate Prisma client (after install or schema changes)
 npx prisma generate
 
-# (Optional) Create a migration folder for the initial schema
+ (Optional) Create a migration folder for the initial schema
 npx prisma migrate dev --name init
 
 
@@ -158,3 +158,4 @@ The app intentionally favors clarity over complexity (e.g., simple error handlin
 For production you’d typically add:
 
 Postgres, logging, validation with Zod/JOI, rate limiting, refresh tokens, domain services, tests, CI.
+
