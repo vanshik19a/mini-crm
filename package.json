@@ -1,0 +1,14 @@
+{
+  "name": "mini-crm",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["frontend", "backend"],
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c blue,green \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "dev:api": "npm run dev --prefix backend",
+    "dev:web": "npm run dev --prefix frontend"
+  }
+}

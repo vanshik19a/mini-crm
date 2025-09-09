@@ -1,0 +1,13 @@
+# deps & build
+node_modules/
+dist/
+
+# env
+.env
+
+# prisma local DB (very important)
+prisma/*.db
+prisma/*.db-journal
+
+# logs
+*.log

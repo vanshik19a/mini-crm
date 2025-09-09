@@ -1,0 +1,56 @@
+// backend/prisma/schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+
+  contacts Contact[]
+  notes    Note[]
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  company   String?
+  phone     String?
+  createdAt DateTime @default(now())
+
+  ownerId Int
+  owner   User      @relation(fields: [ownerId], references: [id])
+
+  notes Note[]
+  deals Deal[]
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  body      String
+  createdAt DateTime @default(now())
+
+  contactId Int
+  contact   Contact  @relation(fields: [contactId], references: [id])
+
+  authorId Int
+  author   User     @relation(fields: [authorId], references: [id])
+}
+
+model Deal {
+  id        Int      @id @default(autoincrement())
+  title     String
+  amount    Float    @default(0)
+  stage     String   @default("Prospect")
+  createdAt DateTime @default(now())
+
+  contactId Int
+  contact   Contact  @relation(fields: [contactId], references: [id])
+}
