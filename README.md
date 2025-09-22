@@ -2,7 +2,7 @@ Mini-CRM
 
 A tiny, full-stack CRM you can run locally in minutes.
 Backend: Node + Express + TypeScript + Prisma (SQLite) + JWT auth + Swagger
-Frontend: Next.js (App Router) + TypeScript + Tailwind (optional) + simple auth guard
+Frontend: Next.js (App Router) + TypeScript + simple auth guard
 
 FEATURES
 
